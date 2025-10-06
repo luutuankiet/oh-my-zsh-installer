@@ -43,18 +43,11 @@ else
     log "Zsh autosuggestions already installed. Skipping."
 fi
 
-# Install Zsh syntax highlighting
-if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-    log "Installing Zsh syntax highlighting..."
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-else
-    log "Zsh syntax highlighting already installed. Skipping."
-fi
 
 # Update .zshrc to enable plugins
 log "Configuring Zsh plugins in .zshrc..."
 if ! grep -q "zsh-autosuggestions" ~/.zshrc; then
-    sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
+    sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions)/' ~/.zshrc
     log "Updated plugins in .zshrc."
 else
     log "Plugins already configured in .zshrc."
