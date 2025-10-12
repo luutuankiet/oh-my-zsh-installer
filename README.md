@@ -19,7 +19,7 @@ Ensure your server has the following installed:
 ## **Installation**
 1. Clone this repository or download the script:
    ```bash
-   git clone https://github.com/MNMaqsood/oh-my-zsh-installer.git
+   git clone https://github.com/luutuankiet/oh-my-zsh-installer.git
    cd oh-my-zsh-installer
    ```
 
