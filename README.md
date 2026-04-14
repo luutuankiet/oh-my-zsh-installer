@@ -1,60 +1,42 @@
-# **Oh My Zsh Installer with Plugins**
+# Oh My Zsh + tmux bootstrap
 
-This script automates the installation of **Oh My Zsh**, **Zsh autosuggestions**, and **Zsh syntax highlighting** on a new server. It also allows you to set Zsh as the default shell.
+One-shot setup for a new machine: installs **Oh My Zsh**, the two plugins
+worth having (autosuggestions + syntax highlighting), and a minimal
+**tmux config** tuned for modern TUIs like Claude Code.
 
-## **Features**
-- Installs **Oh My Zsh**.
-- Installs **Zsh autosuggestions** and **Zsh syntax highlighting** plugins.
-- Optionally sets Zsh as the default shell.
----
+Runs on **macOS** (via Homebrew) and **Debian/Ubuntu** (via apt).
 
-## **Prerequisites**
-Ensure your server has the following installed:
-- `curl`
-- `git`
-- `zsh` (the script will install it if not already present)
+## Features
 
----
+- Installs Zsh, tmux, git, curl via the right package manager for your OS.
+- Installs Oh My Zsh unattended (no mid-install prompts).
+- Installs `zsh-autosuggestions` and `zsh-syntax-highlighting`, and enables
+  both in `~/.zshrc`.
+- Drops a vanilla `~/.tmux.conf` that fixes the usual input-eating issues
+  inside tmux (arrow keys spilling as `[A`, keys needing two presses, etc.).
+  See [TMUX-NOTES.md](TMUX-NOTES.md) for the debugging story.
+- Optional: set Zsh as the default shell.
+- Safe to re-run: everything is idempotent, and any existing `~/.tmux.conf`
+  is backed up with a timestamp suffix before being replaced.
 
-## **Installation**
-1. Clone this repository or download the script:
-   ```bash
-   git clone https://github.com/luutuankiet/oh-my-zsh-installer.git
-   cd oh-my-zsh-installer
-   ```
+## Prerequisites
 
-2. Make the script executable:
-   ```bash
-   chmod +x install_oh_my_zsh.sh
-   ```
+- **macOS:** [Homebrew](https://brew.sh) installed.
+- **Debian/Ubuntu:** `sudo` access (for `apt-get`).
 
-3. Run the script with or without arguments:
+## Install
 
-### **Usage**
 ```bash
-./install_oh_my_zsh.sh [yes|no]
+git clone https://github.com/luutuankiet/oh-my-zsh-installer.git
+cd oh-my-zsh-installer
+chmod +x install_oh_my_zsh.sh
+./install_oh_my_zsh.sh          # install, leave default shell alone
+./install_oh_my_zsh.sh yes      # install AND chsh to zsh
 ```
 
-- **Arguments:**
-  - `yes`: Install Zsh and set it as the default shell.
-  - `no` (default): Install Zsh without changing the default shell.
+Then open a new terminal (or `exec zsh`) to pick up Oh My Zsh + plugins,
+and open a new tmux pane to pick up the tmux config.
 
-**Examples:**
+## License
 
-- Install Oh My Zsh and make it the default shell:
-  ```bash
-  ./install_oh_my_zsh.sh yes
-  ```
-
-- Install Oh My Zsh without changing the default shell:
-  ```bash
-  ./install_oh_my_zsh.sh no
-  ```
-
-- If no argument is passed, it defaults to `no`:
-  ```bash
-  ./install_oh_my_zsh.sh
-  ```
-
-## **License**
-This project is licensed under the [MIT License](LICENSE).
+MIT — see [LICENSE](LICENSE).
